@@ -5,8 +5,8 @@
 #SBATCH --ntasks-per-node=16   
 
 
-mkdir Rat_data
-cd Rat_data
+mkdir MesAur_data
+cd MesMur_data
 
 
 #cdna.all' - all transcripts of Ensembl genes, excluding ncRNA.
