@@ -1,12 +1,14 @@
 #!/bin/bash
 
-#SBATCH --time=3:00:00   
-#SBATCH --nodes=1  
-#SBATCH --ntasks-per-node=16   
+#SBATCH --time=1:00:00
+#SBATCH -p RM-shared
+#SBATCH --ntasks-per-node=30
+
+source activate pyrpipe_covid
 
 
 mkdir MesAur_data
-cd MesMur_data
+cd MesAur_data
 
 
 #cdna.all' - all transcripts of Ensembl genes, excluding ncRNA.
@@ -35,10 +37,10 @@ grep ">" Mesocricetus_auratus.MesAur1.0.dna.toplevel.fa | cut -d " " -f 1 | tr -
 
 #combine transcriptomes and decoy fasta files.
 cat Mesocricetus_auratus.MesAur1.0.cdna.all.fa Mesocricetus_auratus.MesAur1.0.ncrna.fa Sars_cov_2.ASM985889v3.cdna.all.fa Mesocricetus_auratus.MesAur1.0.dna.toplevel.fa > MesAur_sars_tx_decoy.fasta
-        
+
 
 #cleanup
 rm Mesocricetus_auratus.MesAur1.0.cdna.all.fa Mesocricetus_auratus.MesAur1.0.ncrna.fa Sars_cov_2.ASM985889v3.cdna.all.fa Mesocricetus_auratus.MesAur1.0.dna.toplevel.fa
 
 #create salmon index
-time salmon index -t MesAur_sars_tx_decoy.fasta -d decoys.txt -p 16 -i salmon_index
+time salmon index -t MesAur_sars_tx_decoy.fasta -d decoys.txt -p 30 -i salmon_index
