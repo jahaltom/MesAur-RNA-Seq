@@ -27,7 +27,11 @@ wget -q ftp://ftp.ensemblgenomes.org/pub/viruses/fasta/sars_cov_2/cdna/Sars_cov_
 
 gunzip *gz
 
-
+#Replace space with |. Remove gene:
+sed -i 's/ /|/g' Mesocricetus_auratus.MesAur1.0.cdna.all.fa 
+sed -i 's/gene://g' Mesocricetus_auratus.MesAur1.0.cdna.all.fa
+sed -i 's/ /|/g' Mesocricetus_auratus.MesAur1.0.ncrna.fa 
+sed -i 's/gene://g' Mesocricetus_auratus.MesAur1.0.ncrna.fa
 
 
 
